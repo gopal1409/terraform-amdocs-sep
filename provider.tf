@@ -34,9 +34,5 @@ terraform {
 ###when you want to share the code never share this plugin. 
 #if someone want to use the code redo terraform init
 
-resource "azurerm_resource_group" "rg" {
-  ###change the resource group name
-  name     = "myrg-gopal"
-  location = "eastus"
-}
+
 
