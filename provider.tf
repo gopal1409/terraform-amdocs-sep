@@ -1,8 +1,25 @@
 # first we need to provide the provider block
 provider "azurerm" {
   features {}
+  ##take all the default feature from the cloud service provider. 
+  #i create a vm and delete the vm. the hdd storage will be also delete.
 }
 ##3as per terraform 14 version we are providing this provider
+
+provider "azurerm" {
+  features {
+    virtual_machine {
+      delete_os_disk_on_deletion = false 
+      ##it will ensure when the vm is destro disk is not delete. 
+
+    }
+  }
+  alias = "provider2-westus"
+  #cleintid="XXXXX"
+  ##clientsecret = "YYYY"
+  #environment = "us2"
+  #"subscription_id"="1221212"
+}
 terraform {
   required_providers {
     azurerm={
