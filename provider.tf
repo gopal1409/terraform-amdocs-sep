@@ -1,10 +1,6 @@
-# first we need to provide the provider block
 provider "azurerm" {
-  features {}
-  ##take all the default feature from the cloud service provider. 
-  #i create a vm and delete the vm. the hdd storage will be also delete.
+  features {} 
 }
-##3as per terraform 14 version we are providing this provider
 
 provider "azurerm" {
   features {
@@ -24,15 +20,12 @@ terraform {
   required_providers {
     azurerm={
       source = "hashicorp/azurerm"
+      #source = "hashicorp/aws"
       #version = "2.40.0"
     } 
   }
 }
-###but if you add another provider. random generator local null data
-###we created this block and inside this provider block we have given a cloud service provider name
-#erraform init it will download the plugin required to communicate with the cloud service provider. 
-###when you want to share the code never share this plugin. 
-#if someone want to use the code redo terraform init
+
 
 
 
