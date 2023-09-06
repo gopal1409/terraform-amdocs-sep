@@ -1,10 +1,6 @@
 #!/bin/sh
-sudo yum update -y
-sudo yum install -y httpd
-sudo systemctl enable httpd
-sudo systemctl start httpd  
-sudo systemctl stop firewalld
-sudo systemctl disable firewalld
+sudo apt-get update -y
+sudo apt install -y apache2
 sudo chmod -R 777 /var/www/html
 sudo echo "Welcome to besimple - WebVM App1 - VM Hostname: $(hostname)" > /var/www/html/index.html
 sudo mkdir /var/www/html/app1

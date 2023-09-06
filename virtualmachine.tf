@@ -17,10 +17,10 @@ resource "azurerm_linux_virtual_machine" "mylinuxvm" {
     storage_account_type = "Standard_LRS"
   }
   source_image_reference {
-    publisher = "RedHat"
-    offer = "RHEL"
-    sku = "83-gen2"
-    version = "latest"
+    publisher = "Canonical"
+    offer     = "0001-com-ubuntu-server-jammy"
+    sku       = "22_04-lts-gen2"
+    version   = "latest"
   }
   custom_data = filebase64("${path.module}/app-scripts/app-script.sh")
   
