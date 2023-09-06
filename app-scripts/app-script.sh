@@ -1,8 +1,3 @@
-
-gopal das <gopal1409@gmail.com>
-11:28 AM (1 minute ago)
-to me
-
 #!/bin/sh
 sudo yum update -y
 sudo yum install -y httpd
