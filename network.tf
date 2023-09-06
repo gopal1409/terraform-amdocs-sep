@@ -16,10 +16,14 @@ resource "azurerm_subnet" "mysubnet" {
   resource_group_name  = azurerm_resource_group.myrg1.name
   ###the subnet need to be inside vnet
   virtual_network_name = azurerm_virtual_network.myvnet.name
-  address_prefixes     = ["10.0.1.0/24"]
+  address_prefixes     = ["10.0.0.0/24"]
 }
 ##create public ip
 resource "azurerm_public_ip" "mypublicip" {
+  ###add an explicit dependency to have this resource created only after vnet and subnet resource are created
+  ##terraform have an metqa argument called as dependson
+  ###in depends on the format will be resource and resource ref
+  depends_on = [ azurerm_virtual_network.myvnet,azurerm_subnet.mysubnet ]
   name                = "mypublicip-1"
   resource_group_name = azurerm_resource_group.myrg1.name
   location            = azurerm_resource_group.myrg1.location
