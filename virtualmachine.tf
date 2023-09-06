@@ -12,7 +12,7 @@ resource "azurerm_linux_virtual_machine" "mylinuxvm" {
     public_key = file("${path.module}/ssh-keys/terraform-azure.pem.pub")
   }
   os_disk {
-    name = "osdisk"
+    name = "osdisk-${count.index}"
     caching = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
