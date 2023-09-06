@@ -25,13 +25,13 @@ resource "azurerm_public_ip" "mypublicip" {
   ###in depends on the format will be resource and resource ref
   ##3count is an meta argument
   ###count need to do iteration
-  count = 2
+  for_each = toset(["vm1","vm2"])
   depends_on = [ azurerm_virtual_network.myvnet,azurerm_subnet.mysubnet ]
-  name                = "mypublicip-1-${count.index}"
+  name                = "mypublicip-1-${each.key}"
   resource_group_name = azurerm_resource_group.myrg1.name
   location            = azurerm_resource_group.myrg1.location
   allocation_method   = "Static" ##dynamic
-  domain_name_label = "app1-vm-${count.index}-${random_string.random.id}"
+  domain_name_label = "app1-vm-${each.key}-${random_string.random.id}"
 
   tags = {
     environment = "Production"
@@ -39,8 +39,8 @@ resource "azurerm_public_ip" "mypublicip" {
 }
 ##create network interface
 resource "azurerm_network_interface" "example" {
-  count = 2 
-  name                = "example-nic-${count.index}"
+    for_each = toset(["vm1","vm2"])
+  name                = "example-nic-${each.key}"
   location            = azurerm_resource_group.myrg1.location
   resource_group_name = azurerm_resource_group.myrg1.name
 
@@ -48,7 +48,7 @@ resource "azurerm_network_interface" "example" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.mysubnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id = element(azurerm_public_ip.mypublicip[*].id,count.index) 
+    public_ip_address_id = azurerm_public_ip.mypublicip[each.key].id
     ##nic card will also have an public ip
   }
 }
