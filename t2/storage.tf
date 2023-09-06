@@ -6,6 +6,7 @@ resource "azurerm_storage_account" "mysa" {
   location                 = azurerm_resource_group.myrg1.location
   account_tier             = "Standard"
   account_replication_type = "GRS"
+  provider = azurerm.provider2-westus
 #static variable
 ##when you call a dynamic varaible it will be always in $format
   tags = {
