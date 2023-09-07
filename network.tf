@@ -1,6 +1,6 @@
 ##3create a vnet
 resource "azurerm_virtual_network" "myvnet" {
-  name                = "${var.business_unit}-${var.environment}-${var.resource_group_name}"
+  name                = "${var.business_unit}-${var.environment}-${var.virtual_network_name}"
   location            = azurerm_resource_group.myrg1.location
   resource_group_name = azurerm_resource_group.myrg1.name
   address_space       = ["10.0.0.0/16"] #it will give me more than 65 thousand host
