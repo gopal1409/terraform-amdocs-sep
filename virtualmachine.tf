@@ -1,4 +1,4 @@
-resource "azurerm_linux_virtual_machine" "mylinuxvm" {
+/*resource "azurerm_linux_virtual_machine" "mylinuxvm" {
 
   for_each            = toset(["vm1", "vm2"])
   name                = "mylinuxvm-1-${each.key}"
@@ -28,4 +28,4 @@ resource "azurerm_linux_virtual_machine" "mylinuxvm" {
   }
   custom_data = filebase64("${path.module}/app-scripts/app-script.sh")
   
-}
+}*/

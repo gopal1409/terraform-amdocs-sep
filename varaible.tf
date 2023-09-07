@@ -24,3 +24,7 @@ variable "virtual_network_name" {
   type = string 
   default = "myvnet"
 }
+variable "subnet_name" {
+  description = "virtual network subnet name"
+  type = string
+}
