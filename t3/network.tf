@@ -1,13 +1,13 @@
 ##3create a vnet
 resource "azurerm_virtual_network" "myvnet" {
-  name                = "${var.business_unit}-${var.environment}-${var.resource_group_name}"
+  name                = "myvnet-1"
   location            = azurerm_resource_group.myrg1.location
   resource_group_name = azurerm_resource_group.myrg1.name
   address_space       = ["10.0.0.0/16"] #it will give me more than 65 thousand host
   # dns_servers         = ["10.0.0.4", "10.0.0.5"]
- lifecycle {
-   ignore_changes = [ tags, ]
- }
+ ###create before destroy
+ ##3lifecycle change
+ 
   tags = {
     environment = "Production"
   }

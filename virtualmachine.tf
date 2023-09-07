@@ -1,9 +1,11 @@
 resource "azurerm_linux_virtual_machine" "mylinuxvm" {
+
   for_each            = toset(["vm1", "vm2"])
   name                = "mylinuxvm-1-${each.key}"
   resource_group_name = azurerm_resource_group.myrg1.name
   location            = azurerm_resource_group.myrg1.location
-  size                = "Standard_DS1_v2"
+  #size                = "Standard_DS1_v2"
+  size                = "Standard_D2s_v3"
   admin_username      = "azureyser"
   ###splat operator using element
   ##count index is the length function 
@@ -25,4 +27,5 @@ resource "azurerm_linux_virtual_machine" "mylinuxvm" {
     version   = "latest"
   }
   custom_data = filebase64("${path.module}/app-scripts/app-script.sh")
+  
 }
