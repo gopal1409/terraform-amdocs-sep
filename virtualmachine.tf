@@ -1,10 +1,10 @@
 resource "azurerm_linux_virtual_machine" "mylinuxvm" {
-  for_each = toset(["vm1","vm2"])
-  name = "mylinuxvm-1-${each.key}"
+  for_each            = toset(["vm1", "vm2"])
+  name                = "mylinuxvm-1-${each.key}"
   resource_group_name = azurerm_resource_group.myrg1.name
-  location = azurerm_resource_group.myrg1.location
-  size = "Standard_DS1_v2"
-  admin_username = "azureyser"
+  location            = azurerm_resource_group.myrg1.location
+  size                = "Standard_DS1_v2"
+  admin_username      = "azureyser"
   ###splat operator using element
   ##count index is the length function 
   network_interface_ids = [azurerm_network_interface.example[each.key].id]
@@ -14,8 +14,8 @@ resource "azurerm_linux_virtual_machine" "mylinuxvm" {
     public_key = file("${path.module}/ssh-keys/terraform-azure.pem.pub")
   }
   os_disk {
-    name = "osdisk-${each.key}"
-    caching = "ReadWrite"
+    name                 = "osdisk-${each.key}"
+    caching              = "ReadWrite"
     storage_account_type = "Standard_LRS"
   }
   source_image_reference {
@@ -25,5 +25,4 @@ resource "azurerm_linux_virtual_machine" "mylinuxvm" {
     version   = "latest"
   }
   custom_data = filebase64("${path.module}/app-scripts/app-script.sh")
-  
 }

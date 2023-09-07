@@ -1,11 +1,11 @@
 provider "azurerm" {
-  features {} 
+  features {}
 }
 
 provider "azurerm" {
   features {
     virtual_machine {
-      delete_os_disk_on_deletion = false 
+      delete_os_disk_on_deletion = false
       ##it will ensure when the vm is destro disk is not delete. 
 
     }
@@ -18,11 +18,11 @@ provider "azurerm" {
 }
 terraform {
   required_providers {
-    azurerm={
+    azurerm = {
       source = "hashicorp/azurerm"
       #source = "hashicorp/aws"
       #version = "2.40.0"
-    } 
+    }
   }
 }
 
