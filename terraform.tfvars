@@ -1,0 +1,6 @@
+business_unit="it"
+environment="stg"
+resource_group_name="rg-tfvars"
+resource_group_location="eastus2"
+virtual_network_name="vnet-tfvars"
+subnet_name= "subnet-tfvars"
