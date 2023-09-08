@@ -3,7 +3,8 @@ resource "azurerm_virtual_network" "myvnet" {
   name                = "${var.business_unit}-${var.environment}-${var.virtual_network_name}"
   location            = azurerm_resource_group.myrg1.location
   resource_group_name = azurerm_resource_group.myrg1.name
-  address_space       = ["10.0.0.0/16"] #it will give me more than 65 thousand host
+  #address_space       = [var.virtual_network_address_space[0]]
+  address_space       = var.virtual_network_address_space
   # dns_servers         = ["10.0.0.4", "10.0.0.5"]
  lifecycle {
    ignore_changes = [ tags, ]
@@ -22,7 +23,7 @@ resource "azurerm_subnet" "mysubnet" {
   resource_group_name = azurerm_resource_group.myrg1.name
   ###the subnet need to be inside vnet
   virtual_network_name = azurerm_virtual_network.myvnet.name
-  address_prefixes     = ["10.0.0.0/24"] #@i can attach 256 host. 
+  address_prefixes     = ["10.3.0.0/24"] #@i can attach 256 host. 
 
 }
 ##create public ip

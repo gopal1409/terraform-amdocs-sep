@@ -12,7 +12,7 @@ variable "environment" {
 variable "resource_group_name" {
   description = "resource group name"
   type=string #mnumeric string(list)
-  default = "myrg"
+  default = "myrgg"
 }
 
 variable "resource_group_location" {
@@ -28,4 +28,9 @@ variable "subnet_name" {
   description = "virtual network subnet name"
   type = string
   default = "mysubnet"
+}
+variable "virtual_network_address_space" {
+  description = "we will create multiple vnet together"
+  type = list(string)
+  default = [ "10.0.0.0/16","10.1.0.0/16","10.2.0.0/16" ]
 }

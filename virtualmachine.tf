@@ -2,8 +2,8 @@
 
   for_each            = toset(["vm1", "vm2"])
   name                = "mylinuxvm-1-${each.key}"
-  resource_group_name = azurerm_resource_group.myrg1.name
-  location            = azurerm_resource_group.myrg1.location
+  resource_group_name = "${var.business_unit}-${var.environment}-${var.resource_group_name}"
+  location            = var.resource_group_location
   #size                = "Standard_DS1_v2"
   size                = "Standard_D2s_v3"
   admin_username      = "azureyser"
